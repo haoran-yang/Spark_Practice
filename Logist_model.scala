@@ -17,6 +17,8 @@ object LogisticRegressionModel{
         val splits = data.randomSplit(Array(0.7, 0.3), seed = 11L)
         val train = splits(0).cache()
         val test = splits(1)
+        // 1. LogisticRegressionWithLBFGS基于lbfgs优化损失函数，支持多分类
+        // 2. logisticregressionwithSGD基于梯度下降，仅支持2分类
         // 模型训练，设置类别为2
         val model = new LogisticRegressionWithLBFGS().setNumClasses(2).run(train)
 
